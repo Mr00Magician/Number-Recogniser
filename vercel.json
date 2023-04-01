@@ -6,7 +6,7 @@
             "use": "@vercel/python"
         }
     ],
-    "buildCommand": "pip install -r requirements.txt && python app.py",
+    "buildCommand": "pip install -r requirements.txt && python server/app.py",
     "routes": [
         {
             "src": "/(.*)",
