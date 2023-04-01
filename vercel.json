@@ -6,7 +6,6 @@
             "use": "@vercel/python"
         }
     ],
-    "buildCommand": "flask --app server/app.py run",
     "routes": [
         {
             "src": "(.*)",
