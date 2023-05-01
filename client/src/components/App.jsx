@@ -1,5 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import NavBar from "./NavBar";
+import "./App.css"
 
 function App() {
     const [data, setData] = useState([{}])
@@ -17,6 +19,9 @@ function App() {
 
     return (
         <div>
+            <header>
+                <NavBar />
+            </header>
             <h1>{data.name}</h1>
         </div>
     )
