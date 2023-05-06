@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import NavBar from "./NavBar";
+import Canvas from "./Canvas";
 import "./App.css"
 
 function App() {
@@ -11,8 +12,8 @@ function App() {
             res => res.json()
         ).then(
             data => {
-                setData(data)
-                console.log(data)
+                setData(data);
+                console.log(data);
             }
         ).catch((error) => console.warn('Something went wrong', error))
     }, [])
@@ -22,6 +23,7 @@ function App() {
             <header>
                 <NavBar />
             </header>
+            <Canvas />
             <h1>{data.name}</h1>
         </div>
     )
