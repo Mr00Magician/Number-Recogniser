@@ -1,10 +1,41 @@
 canvas {
-    background-color: aliceblue;
+    background-color: rgb(255, 255, 255);
     width: 400px;
     height: 400px;
+    border-radius: 15px;
+}
+
+.canvas-button {
+    border-radius: 15px;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    margin: 0px 30px;
+    width: 120px;
+    height: 40px;
 }
 
 #canvas-container {
+    width: 400px;
+    margin: auto;
     margin-top: 150px;
     text-align: center;
+}
+
+#prediction-area {
+    border-radius: 15px;
+    padding: 10px 0px;  
+    margin: 10px 0px;
+    background-color: rgb(255, 255, 255);
+}
+#prediction-area label {
+    display: block;
+    font-size: 18px;
+    width: 400px;
+    padding-bottom: 10px;
+}
+#prediction-area textarea {
+    border-radius: 15px;
+    resize: none;
+    width: 300px;
 }

@@ -82,7 +82,12 @@ export default function Canvas(){
                 onMouseDown = {handleMouseDown}
                 onMouseUp = {handleMouseUp}
             />
+            <div id = "prediction-area">
+                <label>prediction</label>
+                <textarea disabled></textarea>
+            </div>
             <button className = "canvas-button" onClick = {clearCanvas}>clear</button>
+            <button className = "canvas-button">Predict</button>
         </div>
     )
 }
