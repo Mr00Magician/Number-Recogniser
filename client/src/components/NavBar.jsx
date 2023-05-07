@@ -7,7 +7,7 @@ function NavBar() {
             <h1>Number Recogniser</h1>
             <ul>
                 <li><a href="https://github.com/Mr00Magician/Number-Recogniser">Github Repo</a></li>
-                <li><a href="https://www.myportfolio.com">Other Projects</a></li>
+                <li><a href="https://www.me-anas-nadeem.carrd.co">Other Projects</a></li>
             </ul>
         </nav>
     )
