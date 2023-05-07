@@ -35,7 +35,11 @@ canvas {
     padding-bottom: 10px;
 }
 #prediction-area textarea {
+    font-size: 18px;
     border-radius: 15px;
     resize: none;
     width: 300px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
 }

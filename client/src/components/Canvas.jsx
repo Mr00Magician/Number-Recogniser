@@ -75,6 +75,59 @@ export default function Canvas(){
         ctx.current.clearRect(0, 0, canvas.current.width, canvas.current.height);
     }
 
+    function toGrayscale(imgData){
+        const data = imgData.data;
+        const grayscaleData = [];
+
+        for (let i = 0; i < data.length; i += 4) {
+            const red = data[i];
+            const green = data[i + 1];
+            const blue = data[i + 2];
+            
+            const grayscale = 0.299 * red + 0.587 * green + 0.114 * blue;
+            
+            grayscaleData.push(grayscale);
+        }
+        return grayscaleData;
+        // const grayscaleImg = [];
+        // for (let i = 0; i < height; i++){
+        //     const row = grayscaleData.slice(i * width, i * width + width);
+        //     grayscaleImg.push(row);
+        // }
+        // do reshaping to 400 by 400 and then resizing to 28 by 28 at backend via cv2
+    }
+
+    function getPrediction(imgData){
+        fetch('./get-prediction', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({data: imgData})
+        }).then(
+            res => res.json()
+        ).then(data => {
+            console.log(data);
+            return data;
+        }
+        ).catch(
+            err => console.warn('something went wrong', err)
+        )
+        return null;
+    }
+
+    function ShowPrediction(pred){
+        const textarea = document.querySelector('#prediction-area textarea');
+        textarea.value = pred;
+    }
+    
+    function predict(){
+        const imgData = ctx.current.getImageData();
+        const grayscaleData = toGrayscale(imgData);
+        const pred = getPrediction(grayscaleData);
+        ShowPrediction(pred);
+    }
+
     return (
         <div id = "canvas-container">
             <canvas
@@ -87,7 +140,7 @@ export default function Canvas(){
                 <textarea disabled></textarea>
             </div>
             <button className = "canvas-button" onClick = {clearCanvas}>clear</button>
-            <button className = "canvas-button">Predict</button>
+            <button className = "canvas-button" onClick = {predict}>Predict</button>
         </div>
     )
 }
