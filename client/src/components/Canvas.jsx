@@ -18,6 +18,8 @@ export default function Canvas(){
         ctx.current = canvas.current.getContext('2d');
         canvas.current.width = 400;
         canvas.current.height = 400;
+        ctx.current.fillStyle = 'white'
+        ctx.current.fillRect(0, 0, 400, 400);
     })
     
     function cursorPosInCanvas(x ,y){
@@ -73,6 +75,8 @@ export default function Canvas(){
     
     function clearCanvas(e){
         ctx.current.clearRect(0, 0, canvas.current.width, canvas.current.height);
+        ctx.current.fillStyle = 'white'
+        ctx.current.fillRect(0, 0, 400, 400);
     }
 
     function toGrayscale(imgData){
@@ -80,9 +84,9 @@ export default function Canvas(){
         const grayscaleData = [];
 
         for (let i = 0; i < data.length; i += 4) {
-            const red = data[i];
-            const green = data[i + 1];
-            const blue = data[i + 2];
+            const red = 255 - data[i];
+            const green = 255 - data[i + 1];
+            const blue = 255 - data[i + 2];
             
             const grayscale = 0.299 * red + 0.587 * green + 0.114 * blue;
             
@@ -97,8 +101,9 @@ export default function Canvas(){
         // do reshaping to 400 by 400 and then resizing to 28 by 28 at backend via cv2
     }
 
-    function getPrediction(imgData){
-        fetch('./get-prediction', {
+    async function getPrediction(imgData){
+        let pred = null;
+        await fetch('./get-prediction', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -107,13 +112,13 @@ export default function Canvas(){
         }).then(
             res => res.json()
         ).then(data => {
-            console.log(data);
-            return data;
+            pred = data;
+            console.log(pred);
         }
         ).catch(
             err => console.warn('something went wrong', err)
         )
-        return null;
+        return pred;
     }
 
     function ShowPrediction(pred){
@@ -122,10 +127,12 @@ export default function Canvas(){
     }
     
     function predict(){
-        const imgData = ctx.current.getImageData();
+        const height = canvas.current.height
+        const width = canvas.current.width
+        const imgData = ctx.current.getImageData(0, 0, width, height);
         const grayscaleData = toGrayscale(imgData);
         const pred = getPrediction(grayscaleData);
-        ShowPrediction(pred);
+        pred.then(data => ShowPrediction(data))
     }
 
     return (
