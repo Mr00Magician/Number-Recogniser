@@ -15,7 +15,6 @@ def home():
 @app.route('/get-prediction', methods = ['POST'])
 def get_prediction():
     img_array = request.json.get('data')
-    print(img_array)
     img_array = np.array(img_array, dtype=np.uint8).reshape(400, 400)
     img_array = cv2.resize(img_array, (28, 28))
     plt.imsave('imgData.png', img_array, cmap = 'gray')
