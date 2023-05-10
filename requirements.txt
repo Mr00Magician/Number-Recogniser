@@ -2,4 +2,4 @@ Flask
 Jinja2==3.1.2
 numpy
 opencv-python
-tensorflow
+tensorflow 
