@@ -5,7 +5,9 @@ import cv2
 
 app = Flask(__name__, template_folder='../client/build', static_folder='../client/build/static')
 
-loaded_CNN = tf.keras.models.load_model('CNN_extended_dataset.h5') 
+loaded_CNN = tf.keras.models.load_model('CNN_extended_dataset.h5')
+
+CANVAS_H, CANVAS_W = 400, 400
 
 @app.route('/')
 def home():
@@ -15,12 +17,32 @@ def home():
 def get_prediction():
     img_array = request.json.get('data')
     img_array = np.array(img_array, dtype=np.uint8).reshape(400, 400)
-    img_array = cv2.resize(img_array, (28, 28))
-    img_array = img_array.reshape(1, 28, 28)
+    ret, thresh = cv2.threshold(img_array, 157, 255, cv2.THRESH_BINARY)
+    contours, heirarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours = sorted(contours, key=lambda c: cv2.boundingRect(c)[0])
+    pred = 0
+    for contour in contours:
+        black_img = np.zeros(shape=(400, 400))
 
-    pred = loaded_CNN.predict([img_array])
-    final_pred = np.argmax(pred)
-    return str(final_pred)
+        x, y, w, h = cv2.boundingRect(contour)
+        start_x = CANVAS_W // 2 - w // 2
+        start_y = CANVAS_H // 2 - h // 2
+        end_x = CANVAS_W // 2 + ((w // 2) if (w % 2 == 0) else (w // 2 + 1)) 
+        end_y = CANVAS_H // 2 + ((h // 2) if (h % 2 == 0) else (h // 2 + 1))
+       
+        black_img[start_y: end_y, start_x: end_x] = img_array[y: y + h, x: x + w]
+
+        # cv2.namedWindow('contours', cv2.WINDOW_NORMAL)
+        # cv2.imshow('contours', black_img)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
+        
+        black_img = cv2.resize(black_img, (28, 28))
+        black_img = black_img.reshape(1, 28, 28)
+
+        pred = pred * 10 + np.argmax(loaded_CNN.predict([black_img]))
+        print('pred = ', pred)
+    return str(pred)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
