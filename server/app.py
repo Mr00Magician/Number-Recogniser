@@ -32,16 +32,19 @@ def get_prediction():
        
         black_img[start_y: end_y, start_x: end_x] = img_array[y: y + h, x: x + w]
 
+        if h < 180:
+            factor = 180 - h
+            black_img = black_img[factor: CANVAS_H - factor, factor: CANVAS_W - factor]
+
         # cv2.namedWindow('contours', cv2.WINDOW_NORMAL)
         # cv2.imshow('contours', black_img)
         # cv2.waitKey(0)
         # cv2.destroyAllWindows()
-        
+
         black_img = cv2.resize(black_img, (28, 28))
         black_img = black_img.reshape(1, 28, 28)
 
         pred = pred * 10 + np.argmax(loaded_CNN.predict([black_img]))
-        print('pred = ', pred)
     return str(pred)
 
 if __name__ == '__main__':
