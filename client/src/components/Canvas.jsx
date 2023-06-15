@@ -113,7 +113,6 @@ export default function Canvas(){
             res => res.json()
         ).then(data => {
             pred = data;
-            console.log(pred);
         }
         ).catch(
             err => console.warn('something went wrong', err)
@@ -123,10 +122,18 @@ export default function Canvas(){
 
     function ShowPrediction(pred){
         const textarea = document.querySelector('#prediction-area textarea');
+        let predictButton = document.querySelector('.canvas-button.predict-button');
         textarea.value = pred;
+        predictButton.innerHTML = 'Predict';
+    }
+
+    function showLoadingAnimation(){
+        let predictButton = document.querySelector('.canvas-button.predict-button');
+        predictButton.innerHTML = '<div class="loading"> </div>';
     }
     
     function predict(){
+        showLoadingAnimation()
         const height = canvas.current.height
         const width = canvas.current.width
         const imgData = ctx.current.getImageData(0, 0, width, height);
@@ -146,8 +153,10 @@ export default function Canvas(){
                 <label>prediction</label>
                 <textarea disabled></textarea>
             </div>
-            <button className = "canvas-button" onClick = {clearCanvas}>clear</button>
-            <button className = "canvas-button" onClick = {predict}>Predict</button>
+            <div className="button-container">
+                <button className = "canvas-button clear-button" onClick = {clearCanvas}>clear</button>
+                <button className = "canvas-button predict-button" onClick = {predict}>Predict</button>
+            </div>
         </div>
     )
 }
