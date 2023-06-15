@@ -1,25 +1,62 @@
+@keyframes spin {
+    0% {
+        transform: rotate(0turn);
+    }
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+.button-container {
+    display: grid;
+    height: 40px;
+    place-items: center;
+}
+
 canvas {
     background-color: rgb(255, 255, 255);
-    width: 400px;
-    height: 400px;
     border-radius: 15px;
+    height: 400px;
+    width: 400px;
 }
 
 .canvas-button {
+    align-items: center;
     border-radius: 15px;
+    cursor: pointer;
     display: inline-block;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
-    margin: 0px 30px;
-    width: 120px;
     height: 40px;
+    margin-top: 0px;
+    position: relative;
+    width: 120px;
 }
 
 #canvas-container {
-    width: 400px;
     margin: auto;
     margin-top: 150px;
     text-align: center;
+    width: 400px;
+}
+
+.clear-button {
+    grid-column: 1;
+}
+
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 40px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: black;
+    animation: spin 1s ease infinite;
+}
+
+.predict-button {
+    grid-column: 2;
 }
 
 #prediction-area {
