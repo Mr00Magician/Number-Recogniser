@@ -144,6 +144,7 @@ export default function Canvas(){
 
     return (
         <div id = "canvas-container">
+            <h3>Draw a number below</h3>
             <canvas
                 onMouseMove = {handleMouseMove}
                 onMouseDown = {handleMouseDown}
@@ -154,7 +155,7 @@ export default function Canvas(){
                 <textarea disabled></textarea>
             </div>
             <div className="button-container">
-                <button className = "canvas-button clear-button" onClick = {clearCanvas}>clear</button>
+                <button className = "canvas-button clear-button" onClick = {clearCanvas}>Clear</button>
                 <button className = "canvas-button predict-button" onClick = {predict}>Predict</button>
             </div>
         </div>
