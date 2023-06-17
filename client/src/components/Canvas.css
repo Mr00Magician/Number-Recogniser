@@ -81,19 +81,33 @@ canvas,
     padding: 10px 0px;  
     margin: 10px 0px;
     background-color: rgb(255, 255, 255);
+    width: 100%;
 }
 #prediction-area label {
     display: block;
     font-size: 18px;
-    width: 400px;
+    width: 100%;
     padding-bottom: 10px;
 }
 #prediction-area textarea {
     font-size: 18px;
     border-radius: 15px;
     resize: none;
-    width: 300px;
+    width: 80%;
     height: 30px;
     line-height: 30px;
     text-align: center;
+}
+
+/* Portrait orientation CSS for mobile phones */
+
+@media (orientation: portrait) {
+    canvas {
+        width: 320px;
+        height: 320px;
+    }
+
+    #canvas-container {
+        width: 320px;
+    }
 }

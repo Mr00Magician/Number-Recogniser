@@ -1,10 +1,13 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import './Canvas.css';
 
 export default function Canvas(){
     var canvas = useRef(null);
     var ctx = useRef(null);
     const canDraw = useRef(false);
+    
+    const initialOrientation = window.innerHeight > window.innerWidth? 'portrait': 'landscape';
+    var [orientation, setOrientation] = useState(initialOrientation);
     
     const mouse = {
         currX: null,
@@ -13,6 +16,15 @@ export default function Canvas(){
         prevY: null
     }
 
+    useLayoutEffect(() => {
+        canvas.current = document.querySelector('canvas');
+        ctx.current = canvas.current.getContext('2d');
+        if (orientation === 'portrait')
+            ctx.current.scale(400/320, 400/320);
+        else
+            ctx.current.scale(1.0, 1.0);
+    }, [orientation])
+
     useLayoutEffect( () => {
         canvas.current = document.querySelector('canvas');
         ctx.current = canvas.current.getContext('2d');
@@ -20,6 +32,17 @@ export default function Canvas(){
         canvas.current.height = 400;
         ctx.current.fillStyle = 'white'
         ctx.current.fillRect(0, 0, 400, 400);
+
+        if (window.innerHeight > window.innerWidth) {
+            ctx.current.scale(400/320, 400/320);
+        }
+
+        window.addEventListener('resize', e => {
+            if (window.innerHeight > window.innerWidth)
+                setOrientation('portrait');
+            else
+                setOrientation('landscape');
+        })
     })
     
     function cursorPosInCanvas(x ,y){
