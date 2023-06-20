@@ -13,8 +13,11 @@
     }
   }
 
+.menu {
+    display: none;
+}
+
 nav {
-    /* margin-top: 10px; */
     position: fixed;
     top: 0;
     line-height: 80px;
@@ -65,4 +68,78 @@ nav ul li {
     margin: 0 10px;
     margin-left: 20px;
     box-sizing: border-box;
+}
+
+/* Portrait orientation CSS for mobile phones */
+
+@media (orientation: portrait) {
+    
+    .hamburger {
+        background-color: antiquewhite;
+        border-radius: 10px;
+        display: inline-block;
+        height: 2px;
+        transition: all 0.5s ease-in-out;
+        vertical-align: middle;
+        width: 25px;
+    }
+
+    .hamburger::before, .hamburger::after {
+        background-color: white;
+        border-radius: 10px;
+        content: '';
+        display: inline-block;
+        height: 2px;
+        position: absolute;
+        width: 25px;
+    }
+    
+    .hamburger::after {
+        transform: translateY(8px);
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .hamburger::before {
+        transform: translateY(-8px);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger.open {
+        background-color: transparent;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger.open::after {
+        transform: rotate(-45deg);
+        transition: all 0.5s ease-in-out;
+    }
+
+    .hamburger.open::before {
+        transform: rotate(45deg);
+        transition: all 0.5s ease-in-out;
+    }
+
+    .menu {
+        display: inline-block;
+        height: 60px;
+        margin: auto 0px auto 80px;
+        position: absolute;
+        top: 0px;
+    }
+
+    nav {
+        height: 60px;
+        line-height: 60px;
+        padding-right: 0px;
+    }
+    
+    nav h1{
+        font-size: 22px;
+        line-height: 60px;
+        padding: 0 20px;
+    }
+    
+    nav > ul {
+        display: none;
+    }
 }
