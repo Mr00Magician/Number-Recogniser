@@ -7,13 +7,18 @@ function NavBar() {
         let menuOpen = false;
         let hamburgerMenu = document.querySelector('.menu');
         let hamburger = document.querySelector('.hamburger');
+        let navLinks = document.querySelector('nav > ul');
         hamburgerMenu.addEventListener('touchstart', e => {
             if (menuOpen) {
                 hamburger.classList.remove('open');
+                navLinks.classList.remove('show');
+                navLinks.classList.add('hide');
                 menuOpen = false;
             }
             else {
                 hamburger.classList.add('open');
+                navLinks.classList.remove('hide');
+                navLinks.classList.add('show');
                 menuOpen = true;
             }
         })
