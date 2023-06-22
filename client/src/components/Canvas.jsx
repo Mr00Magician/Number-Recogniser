@@ -43,6 +43,10 @@ export default function Canvas(){
             else
                 setOrientation('landscape');
         })
+
+        document.addEventListener('touchmove', function(event) {
+            event.preventDefault();
+          }, { passive: false });
     })
     
     function cursorPosInCanvas(x ,y){
@@ -95,6 +99,38 @@ export default function Canvas(){
         mouse.currX = x;
         mouse.currY = y;
     }
+
+    function handleTouchStart(e){
+        canDraw.current = true;
+    }
+
+    function handleTouchEnd(e){
+        canDraw.current = false;
+        mouse.currX = null;
+        mouse.currY = null;
+        mouse.prevX = null;
+        mouse.prevY = null;
+    }
+
+    function handleTouchMove(e){
+        let touchX = e.touches[0].pageX;
+        let touchY = e.touches[0].pageY;
+        let {x, y} = cursorPosInCanvas(touchX, touchY);
+        if (!mouse.prevX){
+            mouse.prevX = x;
+            mouse.prevY = y;
+            mouse.currX = x;
+            mouse.currY = y;
+        }
+        if(canDraw.current) {
+            drawCircle();
+            drawLine();
+        }
+        mouse.prevX = mouse.currX;
+        mouse.prevY = mouse.currY;
+        mouse.currX = x;
+        mouse.currY = y;
+    }
     
     function clearCanvas(e){
         ctx.current.clearRect(0, 0, canvas.current.width, canvas.current.height);
@@ -116,12 +152,6 @@ export default function Canvas(){
             grayscaleData.push(grayscale);
         }
         return grayscaleData;
-        // const grayscaleImg = [];
-        // for (let i = 0; i < height; i++){
-        //     const row = grayscaleData.slice(i * width, i * width + width);
-        //     grayscaleImg.push(row);
-        // }
-        // do reshaping to 400 by 400 and then resizing to 28 by 28 at backend via cv2
     }
 
     async function getPrediction(imgData){
@@ -172,6 +202,9 @@ export default function Canvas(){
                 onMouseMove = {handleMouseMove}
                 onMouseDown = {handleMouseDown}
                 onMouseUp = {handleMouseUp}
+                onTouchStart = {handleTouchStart}
+                onTouchEnd = {handleTouchEnd}
+                onTouchMove = {handleTouchMove}
             />
             <div id = "prediction-area">
                 <label>prediction</label>
