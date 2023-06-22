@@ -9,3 +9,12 @@ body {
     height: 100%;
     background-repeat: no-repeat;
 }
+
+/* Portrait orientation CSS for mobile phones */
+
+@media (orientation: portrait) {
+    body {
+        background-image: url('../images/textured_green_portrait.jpg');
+        height: calc(100vh - 110px);
+    }
+}
