@@ -11,31 +11,58 @@
         transform: translateY(0);
         background-color: rgba(0, 255, 174, 0.15);
     }
-  }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        background-color: rgba(255, 255, 255, 0.3);
+        visibility: hidden;
+        transform: translate(100%, -10px);
+    }
+    100% {
+        background-color: white;
+        visibility: visible;
+        transform: translate(0px, -10px);
+    }
+}
+
+@keyframes slideOutToLeft {
+    0% {
+        background-color: white;
+        visibility: visible;
+        transform: translate(0px, -10px);
+    }
+    100% {
+        background-color: rgba(255, 255, 255, 0.3);
+        visibility: hidden;
+        transform: translate(120%, -10px);
+    }
+}
+
 
 .menu {
     display: none;
 }
 
 nav {
-    position: fixed;
-    top: 0;
-    line-height: 80px;
-    width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
+    animation: 0.5s ease-out 0.5s 1 slideInFromTop;
+    animation-fill-mode: both;
     box-sizing: border-box;
     box-shadow: 0 2px 8px 2px rgb(79, 79, 79, 0.8);
     box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.2);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 80px;
     padding-right: 70px;
-    animation: 0.5s ease-out 0.5s 1 slideInFromTop;
-    animation-fill-mode: both;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 nav a {
-    text-decoration: none;
     color: rgb(46, 218, 218);
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
+    text-decoration: none;
 }
 
 nav a:hover {
@@ -43,31 +70,31 @@ nav a:hover {
 }
 
 nav h1{
+    box-sizing: border-box;
     color: rgb(42, 201, 201);
-    font-size: 26px;
     display: inline-block;
+    font-size: 26px;
     font-weight: bold;
     line-height: 80px;
     margin: 0px;
     padding: 0 50px;
-    box-sizing: border-box;
 }
 
 nav ul {
+    float: right;
     list-style-type: none;
-    padding: 0px;
+    line-height: 80px;
     margin: 0px;
     margin-right: 20px;
-    float: right;
+    padding: 0px;
 }
 
 nav ul li {
+    box-sizing: border-box;
     display: inline-block;
-    line-height: 80px;
     font-size: 1.1rem;
     margin: 0 10px;
     margin-left: 20px;
-    box-sizing: border-box;
 }
 
 /* Portrait orientation CSS for mobile phones */
@@ -139,7 +166,34 @@ nav ul li {
         padding: 0 20px;
     }
     
-    nav > ul {
-        display: none;
+    nav a {
+        color: rgb(40, 190, 190);
+        font-size: 15px;
     }
+
+    nav > ul {
+        animation: 0.3s ease-in-out 0s 1 slideInFromLeft;
+        animation-fill-mode: both;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.5);
+        display: none;
+        height: 80px;
+        line-height: 40px;
+        padding-bottom: 8px;
+        width: 150px;
+    }
+
+    nav > ul.hide {
+        animation: 0.3s ease-in-out 0s 1 slideOutToLeft;
+        animation-fill-mode: both;
+        display: inline-block;
+    }
+
+    nav > ul.show {
+        animation: 0.3s ease-in-out 0s 1 slideInFromLeft;
+        animation-fill-mode: both;
+        display: inline-block;
+    }
+
 }

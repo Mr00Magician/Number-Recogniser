@@ -102,6 +102,11 @@ canvas,
 /* Portrait orientation CSS for mobile phones */
 
 @media (orientation: portrait) {
+
+    .canvas-button, * {
+        cursor: default;
+    }
+
     canvas {
         width: 320px;
         height: 320px;
@@ -109,5 +114,6 @@ canvas,
 
     #canvas-container {
         width: 320px;
+        margin-top: 120px;
     }
 }
