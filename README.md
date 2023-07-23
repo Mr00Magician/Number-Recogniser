@@ -5,10 +5,10 @@
 <br>
 <br>
 
-<h2 id ="STACK"> STACK </h2>
+<h2 id ="STACK"> TECH STACK </h2>
 
-|![icons8-tensorflow-48](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/de97b3a7-3956-41b7-a3e6-bcfd4106060b)| ![icons8-react-js-30](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/3714c1dc-3466-48a2-81cb-22de03e84563)| ![icons8-google-cloud-48](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/8a551efa-78e8-4d4c-ba86-bf5ffbd5e761)| ![icons8-flask-70](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/f3f72d85-e52b-442d-a855-5a45631bdad5)| ![icons8-opencv-48](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/ef53804d-2f32-4c09-9daa-0f1b4f799827)|
-| :--: | :--: | :--: | :--: | :--: |
+|![icons8-tensorflow-48](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/de97b3a7-3956-41b7-a3e6-bcfd4106060b)| ![physics](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/191d23ac-03e8-4b7e-b451-2e59fb07c9ae)| ![icons8-google-cloud-64](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/37df1ea1-347c-474f-8041-04e2c99fc3af)| ![icons8-flask-70](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/f3f72d85-e52b-442d-a855-5a45631bdad5)| ![icons8-opencv-48](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/ef53804d-2f32-4c09-9daa-0f1b4f799827)| ![icons8-python-48](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/f9a0fb21-2baf-4656-8dce-009f0b722184)| ![html (1)](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/b771ce69-9d6e-48b9-a755-bd2be1167c65)| ![css](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/6bdf0f35-3183-4700-8124-b70ab5e68fd6)| ![js](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/7cef6371-a857-45e7-9354-f899ac4901ed)|
+| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
 | Tensorflow | ReactJS | Google Cloud | Flask | OpenCV | Python | HTML | CSS | Javascript |
 
 <h2 id ="ABOUT"> ABOUT THE APP </h2>
