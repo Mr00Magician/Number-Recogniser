@@ -13,8 +13,10 @@ This web app is still under development and the ML model behind it can be enhanc
 Upon opening, you will be presented with a blank white canvas on which you can draw a number using a mouse, or by touch (for mobile phones only). After drawing, click the predict button. The app will then try to predict which number has been drawn using a convolutional neural network.
 
 <h2 id ="SCREENSHOTS"> SCREENSHOTS </h2>
+
 |![Website](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/d58eff74-2f28-459a-bfa9-d09eb3868d45)|
 |:--:|
-|Application Window|
+|Website|
 |![Drawing a Number and Predicting](https://github.com/Mr00Magician/Number-Recogniser/assets/92143521/fa97cf32-3889-4ce8-b39b-44815e610014)|
 |:--:|
+|Drawing a Number and Predicting|
